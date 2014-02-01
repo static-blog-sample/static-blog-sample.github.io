@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Static Blog Sample</title><link href="http://static-blog-sample.libsora.so/" rel="alternate"></link><link href="http://static-blog-sample.libsora.so/feeds/all.atom.xml" rel="self"></link><id>http://static-blog-sample.libsora.so/</id><updated>2014-02-01T00:00:00+09:00</updated><entry><title>GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기</title><link href="http://static-blog-sample.libsora.so/posts/static-blog-sample/" rel="alternate"></link><updated>2014-02-01T00:00:00+09:00</updated><author><name>if1live</name></author><id>tag:static-blog-sample.libsora.so,2014-02-01:posts/static-blog-sample/</id><summary type="html">&lt;p&gt;내가 GitHub Pages를 사용한지 대략 1년정도 지났다.
+그동안 어떻게 설정하면 관리하기 편하지 실험도 몇번 해봤고
+테마도 하나 만들어서 사용해봤고
+travis-ci와 연동해서 완전 자동화도 끝냈다.
+정적블로그로 해볼만한거 어느정도 한거같아서 남들한테 영업좀 해볼겸 정리를 해봤다.&lt;/p&gt;
+&lt;p&gt;다음을 대상으로 내용을 작성했다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;개인 블로그를 정적 블로그로 만드려고 하는 사람&lt;/li&gt;
+&lt;li&gt;자신의 정적 블로그가 2% 부족해보이는 사람&lt;/li&gt;
+&lt;li&gt;블로그의 완전 자동화를 목표로 하는 사람&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;주의 : 정적블로그의 장점은 이 글에서는 다루지 않는다. &lt;a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/"&gt;정적 웹사이트 생성기의 유혹&lt;/a&gt;을 참고&lt;/p&gt;
+&lt;h2&gt;Double Repository&lt;/h2&gt;
+&lt;p&gt;GitHub Pages는 2가지 상황에서 동작이 다르다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;계정(혹은 회사)에 딸린 pages. &lt;username&gt;.github.io 프로젝트의 master 브렌치를 사용한다.&lt;/li&gt;
+&lt;li&gt;프로젝트에 딸린 pages. gh-pages 저장소를 새로 만들어서 사용한다. 글의 목표가 개인 블로그를 만드는것이니까 프로젝트에 딸린 pages에 대해서는 취급하지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;github pages의 경우 &lt;username&gt;.github.io 에 있는 내용을 그대로 웹에 보여준다. 블로그 내용을 내용을 &lt;username&gt;.github.io 에 집어넣고 자동생성된 html도 &lt;username&gt;.github.io 에 존재하면 저장소가 깨끗하지 않다. 데이터도 섞여있고 커밋로그도 섞여있다.&lt;/p&gt;
+&lt;p&gt;그래서 저장소를 2개로 분리하는게 좋다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실제 블로그 내용이 있는 저장소. 앞으로 &lt;strong&gt;content repo&lt;/strong&gt; 라고 부른다.&lt;/li&gt;
+&lt;li&gt;생성된 html만 들어있는 &lt;username&gt;.github.io. 앞으로 &lt;strong&gt;output repo&lt;/strong&gt;라고 부른다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;예제로 다음 2개의 저장소를 만들었다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;내용을 저장 : https://github.com/static-blog-sample/blog&lt;/li&gt;
+&lt;li&gt;github pages를 저장 : https://github.com/static-blog-sample/static-blog-sample.github.io&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;content repo ↔ output repo ⇒ git submodule&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/talha131/onCrashReboot"&gt;@talha131&lt;/a&gt;에게 배운 편법이다.
+content repo와 output repo를 git submodule로 엮는다. static html generator로 html을 생성하면 output repo로 데이터가 적절히 들어간다. 이것을 서버로 푸시하면 블로그에 새 글이 올라간다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# content repo 에 위치한 상태&lt;/span&gt;
+&lt;span class="c"&gt;# output repo의 경우는 자기에 맞게 바꾼다&lt;/span&gt;
+
+git submodule add https://github.com/static-blog-sample/static-blog-sample.github.io.git output
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;정적 사이트 생성기 붙이기&lt;/h2&gt;
+&lt;p&gt;자신이 사용할 정적 사이트 생성기에 맞춰서 적절히 내부를 구성한다.
+다른건 어떻게 설정하든 내가 알바 아니지만 생성 결과물이 &lt;strong&gt;output&lt;/strong&gt;에 들어가도록 한다.
+pelican을 이용한 설정 예제는 해당 블로그를 참고하면 된다.&lt;/p&gt;
+&lt;h2&gt;travis-ci&lt;/h2&gt;
+&lt;p&gt;새로운 글이 푸시되었을때 travis-ci가 하고싶은 작업은 다음과 같다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;static html generator를 돌려서 html을 생성한다. html은 output에 들어간다&lt;/li&gt;
+&lt;li&gt;output repo의 내용을 커밋한 다음 푸시한다.&lt;/li&gt;
+&lt;li&gt;참 쉽죠?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이를 하기 위해서는 몇가지 과정을 거쳐야한다.&lt;/p&gt;
+&lt;h3&gt;static html generator가 돌아갈 수 있는 환경 만들기.&lt;/h3&gt;
+&lt;p&gt;jekyll을 쓰건 pelican을 쓰건 이런 static html generator은 travis-ci에 당연히 설치되어있지 않다.
+.travis.yml에 해당 패키지를 설치하는 스크립트를 잊지말고 작성한다.&lt;/p&gt;
+&lt;h3&gt;GitHub Token&lt;/h3&gt;
+&lt;p&gt;travis-ci에서 다른 저장소로 푸시를 하기 위해서는 token이 필요하다.
+github profile -&amp;gt; &lt;a href="https://github.com/settings/applications"&gt;Applications&lt;/a&gt;
+으로 들어간다.
+&lt;strong&gt;Create new token&lt;/strong&gt; 을 누르고 적절히 token을 하나 만든다. 이 token을 기억해놓는다.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Create new token" src="/static/create-token.png" /&gt;&lt;/p&gt;
+&lt;p&gt;token은 얻었는데 이것을 &lt;code&gt;.travis.yml&lt;/code&gt;에 그냥 노출시키는건 말이 안되잖아?
+그래서 [travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법][http://docs.travis-ci.com/user/encryption-keys/]을 제공한다.
+루비 gem이 필요한 관계로 이것이 굴러가는 환경을 구축한다.
+아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 &lt;code&gt;static-blog-sample/static-blog-sample.github.io&lt;/code&gt;이다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;gem&lt;/span&gt; &lt;span class="nb"&gt;install&lt;/span&gt; &lt;span class="nx"&gt;travis&lt;/span&gt;
+&lt;span class="nx"&gt;travis&lt;/span&gt; &lt;span class="nx"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;token&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="na"&gt;-r&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;repo&lt;/span&gt;&lt;span class="na"&gt;-name&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;출력으로 &lt;code&gt;secure: ".... encrypted data ...."&lt;/code&gt; 와 같은게 나온다. 이를 &lt;code&gt;.travis.yml&lt;/code&gt;에 집어넣는다.&lt;/p&gt;
+&lt;h3&gt;빌드 스크립트 작성&lt;/h3&gt;
+&lt;p&gt;travis-ci가 블로그를 받아서 수행할 작업을 작성한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# 정적 html 생성은 자신이 사용하는 환경에 맞춰서 바꾼다.
+make publish
+git config --global user.email &amp;quot;your-mail@gmail.com&amp;quot;
+git config --global user.name &amp;quot;Travis&amp;quot;
+cd output
+git pull origin master
+git checkout master
+git add -f .
+git commit -a -m &amp;quot;add new site content&amp;quot;
+git push https://&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;@github.com/static-blog-sample/static-blog-sample.github.io.git master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;GitHub Pages : http://pages.github.com/&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/"&gt;정적 웹사이트 생성기의 유혹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;wesleyhales.com : https://github.com/wesleyhales/wesleyhales.com&lt;/li&gt;
+&lt;li&gt;https://github.com/talha131/onCrashReboot&lt;/li&gt;
+&lt;li&gt;Disqus : http://disqus.com&lt;/li&gt;
+&lt;li&gt;Pelican : http://blog.getpelican.com/&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="blog"></category><category term="static site generator"></category></entry></feed>
