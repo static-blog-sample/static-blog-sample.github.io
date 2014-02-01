@@ -50,21 +50,12 @@ travis-ci와 연동해서 완전 자동화도 끝냈다.
 </ul>
 <p>주의 : 정적블로그의 장점은 이 글에서는 다루지 않는다. <a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/">정적 웹사이트 생성기의 유혹</a>을 참고</p>
 <h2>Double Repository</h2>
-<p>GitHub Pages는 2가지 상황에서 동작이 다르다.</p>
-<ul>
-<li>계정(혹은 회사)에 딸린 pages. <username>.github.io 프로젝트의 master 브렌치를 사용한다.</li>
-<li>프로젝트에 딸린 pages. gh-pages 저장소를 새로 만들어서 사용한다. 글의 목표가 개인 블로그를 만드는것이니까 프로젝트에 딸린 pages에 대해서는 취급하지 않는다.</li>
-</ul>
-<p>github pages의 경우 <username>.github.io 에 있는 내용을 그대로 웹에 보여준다. 블로그 내용을 내용을 <username>.github.io 에 집어넣고 자동생성된 html도 <username>.github.io 에 존재하면 저장소가 깨끗하지 않다. 데이터도 섞여있고 커밋로그도 섞여있다.</p>
+<p>GitHub Pages는 2가지 상황에서 동작이 다르다. 하나는 계정(혹은 회사)에 딸린 pages이다. username.github.io 프로젝트의 master 브렌치를 사용한다. 다른 하나는 프로젝트에 딸린 pages이다. gh-pages 저장소를 새로 만들어서 사용한다. 글의 목표가 개인 블로그를 만드는것이니까 프로젝트에 딸린 pages에 대해서는 취급하지 않는다.</p>
+<p>개인용 github pages의 경우 username.github.io 에 있는 내용을 그대로 웹에 보여준다. 블로그 내용을 내용을 username.github.io 에 집어넣고 자동생성된 html도 username.github.io 에 존재하면 저장소가 깨끗하지 않다. 데이터도 섞이게 되고 커밋로그도 섞여있다.</p>
 <p>그래서 저장소를 2개로 분리하는게 좋다.</p>
 <ul>
-<li>실제 블로그 내용이 있는 저장소. 앞으로 <strong>content repo</strong> 라고 부른다.</li>
-<li>생성된 html만 들어있는 <username>.github.io. 앞으로 <strong>output repo</strong>라고 부른다</li>
-</ul>
-<p>예제로 다음 2개의 저장소를 만들었다.</p>
-<ul>
-<li>내용을 저장 : https://github.com/static-blog-sample/blog</li>
-<li>github pages를 저장 : https://github.com/static-blog-sample/static-blog-sample.github.io</li>
+<li>실제 블로그 내용이 있는 저장소. 앞으로 <strong><a href="https://github.com/static-blog-sample/blog">content repo</a></strong> 라고 부른다.</li>
+<li>생성된 html만 들어있는 username.github.io. 앞으로 <strong><a href="https://github.com/static-blog-sample/static-blog-sample.github.io">output repo</a></strong>라고 부른다</li>
 </ul>
 <h2>content repo ↔ output repo ⇒ git submodule</h2>
 <p><a href="https://github.com/talha131/onCrashReboot">@talha131</a>에게 배운 편법이다.
@@ -81,6 +72,8 @@ git submodule update
 <p>자신이 사용할 정적 사이트 생성기에 맞춰서 적절히 내부를 구성한다.
 다른건 어떻게 설정하든 내가 알바 아니지만 생성 결과물이 <strong>output</strong>에 들어가도록 한다.
 pelican을 이용한 설정 예제는 해당 블로그를 참고하면 된다.</p>
+<h2>CNAME</h2>
+<p>블로그에 custom domain을 설정하고 싶으면 <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">Setting up a custom domain with Pages</a>을 설정하면 된다. 내용을 참고해서 CNAME 파일을 만들고 DNS설정을 해주면 도메인이 연결된다.</p>
 <h2>travis-ci</h2>
 <p>새로운 글이 푸시되었을때 travis-ci가 하고싶은 작업은 다음과 같다.</p>
 <ol>
@@ -99,37 +92,31 @@ github profile -&gt; <a href="https://github.com/settings/applications">Applicat
 <strong>Create new token</strong> 을 누르고 적절히 token을 하나 만든다. 이 token을 기억해놓는다.</p>
 <p><img alt="Create new token" src="/static/create-token.png" /></p>
 <p>token은 얻었는데 이것을 <code>.travis.yml</code>에 그냥 노출시키는건 말이 안되잖아?
-그래서 [travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법][http://docs.travis-ci.com/user/encryption-keys/]을 제공한다.
+그래서 <a href="http://docs.travis-ci.com/user/encryption-keys/">travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법</a>을 제공한다.
 루비 gem이 필요한 관계로 이것이 굴러가는 환경을 구축한다.
 아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 <code>static-blog-sample/blog</code>이다. output repo가 아니라 <strong>content repo</strong>다!</p>
 <div class="highlight"><pre><span class="nx">gem</span> <span class="nb">install</span> <span class="nx">travis</span>
-<span class="nx">travis</span> <span class="nx">encrypt</span> <span class="n">GH_TOKEN</span><span class="o">=&lt;</span><span class="nb">token</span><span class="o">&gt;</span> <span class="na">-r</span> <span class="o">&lt;</span><span class="nx">repo</span><span class="na">-name</span><span class="o">&gt;</span>
+<span class="nx">travis</span> <span class="nx">encrypt</span> <span class="n">GH_TOKEN</span><span class="o">=&lt;</span><span class="nb">token</span><span class="o">&gt;</span> <span class="na">-r</span> <span class="o">&lt;</span><span class="nb">content</span><span class="na">-repo-name</span><span class="o">&gt;</span>
 </pre></div>
 
 
 <p>출력으로 <code>secure: ".... encrypted data ...."</code> 와 같은게 나온다. 이를 <code>.travis.yml</code>에 집어넣는다.</p>
 <h3>빌드 스크립트 작성</h3>
-<p>travis-ci가 블로그를 받아서 수행할 작업을 작성한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.</p>
-<div class="highlight"><pre>git config --global user.email &quot;your-mail@gmail.com&quot;
-git config --global user.name &quot;Travis&quot;
-cp CNAME output
-cd output
-git checkout master
-git pull
-cd ..
-make publish
-cd output
-git add -f .
-git commit -a -m &quot;add new site content&quot;
-git push https://<span class="cp">${</span><span class="n">GH_TOKEN</span><span class="cp">}</span>@github.com/static-blog-sample/static-blog-sample.github.io.git master
-</pre></div>
-
-
+<p>travis-ci가 블로그를 받아서 수행할 작업을 작성한다.
+이 블로그에 사용한 <a href="https://github.com/static-blog-sample/blog/blob/master/.travis.yml">.travis.yml</a>을 참고한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.</p>
+<h2>정리</h2>
+<p>여기까지 완료했으면 블로그에 새로운 글을 쓰고 푸시해보자. travis-ci가 html을 생성하고 GitHub Pages로 푸시를 한다. 그리고 빌드가 성공적으로 끝났으면 빌드 성공했다고 스팸메일이 날라온다. 몇분정도 지나면 새로운 내용이 적용된다.</p>
+<p>이 블로그와 관련된 추가 정보는 다음의 링크에서 확인가능하다</p>
+<ul>
+<li><a href="https://github.com/static-blog-sample/blog">content repo</a> : .travis.yml이라든가 기본 설정 참고용</li>
+<li><a href="https://github.com/static-blog-sample/static-blog-sample.github.io">output repo</a> : github pages로 연결되어있다.</li>
+<li><a href="https://travis-ci.org/static-blog-sample/blog"><img alt="Build Status" src="https://travis-ci.org/static-blog-sample/blog.png?branch=master" /></a> travis-ci</li>
+</ul>
 <h1>Reference</h1>
 <ul>
-<li>[GitHub Pages][http://pages.github.com]</li>
+<li><a href="http://pages.github.com">GitHub Pages</a></li>
 <li><a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/">정적 웹사이트 생성기의 유혹</a></li>
-<li>[wesleyhales.com][https://github.com/wesleyhales/wesleyhales.com]</li>
+<li><a href="https://github.com/wesleyhales/wesleyhales.com">wesleyhales.com</a></li>
 <li><a href="https://github.com/talha131/onCrashReboot">onCrashReboot</a></li>
 </ul>
     </div><!-- /.entry-content -->

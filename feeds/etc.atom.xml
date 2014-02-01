@@ -12,21 +12,12 @@ travis-ci와 연동해서 완전 자동화도 끝냈다.
 &lt;/ul&gt;
 &lt;p&gt;주의 : 정적블로그의 장점은 이 글에서는 다루지 않는다. &lt;a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/"&gt;정적 웹사이트 생성기의 유혹&lt;/a&gt;을 참고&lt;/p&gt;
 &lt;h2&gt;Double Repository&lt;/h2&gt;
-&lt;p&gt;GitHub Pages는 2가지 상황에서 동작이 다르다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;계정(혹은 회사)에 딸린 pages. &lt;username&gt;.github.io 프로젝트의 master 브렌치를 사용한다.&lt;/li&gt;
-&lt;li&gt;프로젝트에 딸린 pages. gh-pages 저장소를 새로 만들어서 사용한다. 글의 목표가 개인 블로그를 만드는것이니까 프로젝트에 딸린 pages에 대해서는 취급하지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;github pages의 경우 &lt;username&gt;.github.io 에 있는 내용을 그대로 웹에 보여준다. 블로그 내용을 내용을 &lt;username&gt;.github.io 에 집어넣고 자동생성된 html도 &lt;username&gt;.github.io 에 존재하면 저장소가 깨끗하지 않다. 데이터도 섞여있고 커밋로그도 섞여있다.&lt;/p&gt;
+&lt;p&gt;GitHub Pages는 2가지 상황에서 동작이 다르다. 하나는 계정(혹은 회사)에 딸린 pages이다. username.github.io 프로젝트의 master 브렌치를 사용한다. 다른 하나는 프로젝트에 딸린 pages이다. gh-pages 저장소를 새로 만들어서 사용한다. 글의 목표가 개인 블로그를 만드는것이니까 프로젝트에 딸린 pages에 대해서는 취급하지 않는다.&lt;/p&gt;
+&lt;p&gt;개인용 github pages의 경우 username.github.io 에 있는 내용을 그대로 웹에 보여준다. 블로그 내용을 내용을 username.github.io 에 집어넣고 자동생성된 html도 username.github.io 에 존재하면 저장소가 깨끗하지 않다. 데이터도 섞이게 되고 커밋로그도 섞여있다.&lt;/p&gt;
 &lt;p&gt;그래서 저장소를 2개로 분리하는게 좋다.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;실제 블로그 내용이 있는 저장소. 앞으로 &lt;strong&gt;content repo&lt;/strong&gt; 라고 부른다.&lt;/li&gt;
-&lt;li&gt;생성된 html만 들어있는 &lt;username&gt;.github.io. 앞으로 &lt;strong&gt;output repo&lt;/strong&gt;라고 부른다&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;예제로 다음 2개의 저장소를 만들었다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;내용을 저장 : https://github.com/static-blog-sample/blog&lt;/li&gt;
-&lt;li&gt;github pages를 저장 : https://github.com/static-blog-sample/static-blog-sample.github.io&lt;/li&gt;
+&lt;li&gt;실제 블로그 내용이 있는 저장소. 앞으로 &lt;strong&gt;&lt;a href="https://github.com/static-blog-sample/blog"&gt;content repo&lt;/a&gt;&lt;/strong&gt; 라고 부른다.&lt;/li&gt;
+&lt;li&gt;생성된 html만 들어있는 username.github.io. 앞으로 &lt;strong&gt;&lt;a href="https://github.com/static-blog-sample/static-blog-sample.github.io"&gt;output repo&lt;/a&gt;&lt;/strong&gt;라고 부른다&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;content repo ↔ output repo ⇒ git submodule&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/talha131/onCrashReboot"&gt;@talha131&lt;/a&gt;에게 배운 편법이다.
@@ -43,6 +34,8 @@ git submodule update
 &lt;p&gt;자신이 사용할 정적 사이트 생성기에 맞춰서 적절히 내부를 구성한다.
 다른건 어떻게 설정하든 내가 알바 아니지만 생성 결과물이 &lt;strong&gt;output&lt;/strong&gt;에 들어가도록 한다.
 pelican을 이용한 설정 예제는 해당 블로그를 참고하면 된다.&lt;/p&gt;
+&lt;h2&gt;CNAME&lt;/h2&gt;
+&lt;p&gt;블로그에 custom domain을 설정하고 싶으면 &lt;a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages"&gt;Setting up a custom domain with Pages&lt;/a&gt;을 설정하면 된다. 내용을 참고해서 CNAME 파일을 만들고 DNS설정을 해주면 도메인이 연결된다.&lt;/p&gt;
 &lt;h2&gt;travis-ci&lt;/h2&gt;
 &lt;p&gt;새로운 글이 푸시되었을때 travis-ci가 하고싶은 작업은 다음과 같다.&lt;/p&gt;
 &lt;ol&gt;
@@ -61,36 +54,30 @@ github profile -&amp;gt; &lt;a href="https://github.com/settings/applications"&g
 &lt;strong&gt;Create new token&lt;/strong&gt; 을 누르고 적절히 token을 하나 만든다. 이 token을 기억해놓는다.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Create new token" src="/static/create-token.png" /&gt;&lt;/p&gt;
 &lt;p&gt;token은 얻었는데 이것을 &lt;code&gt;.travis.yml&lt;/code&gt;에 그냥 노출시키는건 말이 안되잖아?
-그래서 [travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법][http://docs.travis-ci.com/user/encryption-keys/]을 제공한다.
+그래서 &lt;a href="http://docs.travis-ci.com/user/encryption-keys/"&gt;travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법&lt;/a&gt;을 제공한다.
 루비 gem이 필요한 관계로 이것이 굴러가는 환경을 구축한다.
 아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 &lt;code&gt;static-blog-sample/blog&lt;/code&gt;이다. output repo가 아니라 &lt;strong&gt;content repo&lt;/strong&gt;다!&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;gem&lt;/span&gt; &lt;span class="nb"&gt;install&lt;/span&gt; &lt;span class="nx"&gt;travis&lt;/span&gt;
-&lt;span class="nx"&gt;travis&lt;/span&gt; &lt;span class="nx"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;token&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="na"&gt;-r&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;repo&lt;/span&gt;&lt;span class="na"&gt;-name&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;travis&lt;/span&gt; &lt;span class="nx"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;token&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="na"&gt;-r&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;content&lt;/span&gt;&lt;span class="na"&gt;-repo-name&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;출력으로 &lt;code&gt;secure: ".... encrypted data ...."&lt;/code&gt; 와 같은게 나온다. 이를 &lt;code&gt;.travis.yml&lt;/code&gt;에 집어넣는다.&lt;/p&gt;
 &lt;h3&gt;빌드 스크립트 작성&lt;/h3&gt;
-&lt;p&gt;travis-ci가 블로그를 받아서 수행할 작업을 작성한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git config --global user.email &amp;quot;your-mail@gmail.com&amp;quot;
-git config --global user.name &amp;quot;Travis&amp;quot;
-cp CNAME output
-cd output
-git checkout master
-git pull
-cd ..
-make publish
-cd output
-git add -f .
-git commit -a -m &amp;quot;add new site content&amp;quot;
-git push https://&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;@github.com/static-blog-sample/static-blog-sample.github.io.git master
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;travis-ci가 블로그를 받아서 수행할 작업을 작성한다.
+이 블로그에 사용한 &lt;a href="https://github.com/static-blog-sample/blog/blob/master/.travis.yml"&gt;.travis.yml&lt;/a&gt;을 참고한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.&lt;/p&gt;
+&lt;h2&gt;정리&lt;/h2&gt;
+&lt;p&gt;여기까지 완료했으면 블로그에 새로운 글을 쓰고 푸시해보자. travis-ci가 html을 생성하고 GitHub Pages로 푸시를 한다. 그리고 빌드가 성공적으로 끝났으면 빌드 성공했다고 스팸메일이 날라온다. 몇분정도 지나면 새로운 내용이 적용된다.&lt;/p&gt;
+&lt;p&gt;이 블로그와 관련된 추가 정보는 다음의 링크에서 확인가능하다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/static-blog-sample/blog"&gt;content repo&lt;/a&gt; : .travis.yml이라든가 기본 설정 참고용&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/static-blog-sample/static-blog-sample.github.io"&gt;output repo&lt;/a&gt; : github pages로 연결되어있다.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://travis-ci.org/static-blog-sample/blog"&gt;&lt;img alt="Build Status" src="https://travis-ci.org/static-blog-sample/blog.png?branch=master" /&gt;&lt;/a&gt; travis-ci&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1&gt;Reference&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;[GitHub Pages][http://pages.github.com]&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/"&gt;정적 웹사이트 생성기의 유혹&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[wesleyhales.com][https://github.com/wesleyhales/wesleyhales.com]&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/wesleyhales/wesleyhales.com"&gt;wesleyhales.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/talha131/onCrashReboot"&gt;onCrashReboot&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="blog"></category><category term="static site generator"></category></entry></feed>
