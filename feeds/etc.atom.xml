@@ -80,4 +80,8 @@ github profile -&amp;gt; &lt;a href="https://github.com/settings/applications"&g
 &lt;li&gt;&lt;a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/"&gt;정적 웹사이트 생성기의 유혹&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/wesleyhales/wesleyhales.com"&gt;wesleyhales.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/talha131/onCrashReboot"&gt;onCrashReboot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Document History&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;2014/02/02 : &lt;a href="http://blog.nacyot.com"&gt;nacyot&lt;/a&gt;님의 지적으로 .travis.yml 스크립트 수정&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="blog"></category><category term="static site generator"></category></entry></feed>
