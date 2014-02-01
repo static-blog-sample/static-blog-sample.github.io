@@ -73,6 +73,7 @@ content repo와 output repo를 git submodule로 엮는다. static html generator
 <span class="c"># output repo의 경우는 자기에 맞게 바꾼다</span>
 
 git submodule add https://github.com/static-blog-sample/static-blog-sample.github.io.git output
+git submodule update
 </pre></div>
 
 
@@ -100,7 +101,7 @@ github profile -&gt; <a href="https://github.com/settings/applications">Applicat
 <p>token은 얻었는데 이것을 <code>.travis.yml</code>에 그냥 노출시키는건 말이 안되잖아?
 그래서 [travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법][http://docs.travis-ci.com/user/encryption-keys/]을 제공한다.
 루비 gem이 필요한 관계로 이것이 굴러가는 환경을 구축한다.
-아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 <code>static-blog-sample/static-blog-sample.github.io</code>이다.</p>
+아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 <code>static-blog-sample/blog</code>이다. output repo가 아니라 <strong>content repo</strong>다!</p>
 <div class="highlight"><pre><span class="nx">gem</span> <span class="nb">install</span> <span class="nx">travis</span>
 <span class="nx">travis</span> <span class="nx">encrypt</span> <span class="n">GH_TOKEN</span><span class="o">=&lt;</span><span class="nb">token</span><span class="o">&gt;</span> <span class="na">-r</span> <span class="o">&lt;</span><span class="nx">repo</span><span class="na">-name</span><span class="o">&gt;</span>
 </pre></div>
@@ -109,13 +110,15 @@ github profile -&gt; <a href="https://github.com/settings/applications">Applicat
 <p>출력으로 <code>secure: ".... encrypted data ...."</code> 와 같은게 나온다. 이를 <code>.travis.yml</code>에 집어넣는다.</p>
 <h3>빌드 스크립트 작성</h3>
 <p>travis-ci가 블로그를 받아서 수행할 작업을 작성한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.</p>
-<div class="highlight"><pre># 정적 html 생성은 자신이 사용하는 환경에 맞춰서 바꾼다.
-make publish
-git config --global user.email &quot;your-mail@gmail.com&quot;
+<div class="highlight"><pre>git config --global user.email &quot;your-mail@gmail.com&quot;
 git config --global user.name &quot;Travis&quot;
+cp CNAME output
 cd output
-git pull origin master
 git checkout master
+git pull
+cd ..
+make publish
+cd output
 git add -f .
 git commit -a -m &quot;add new site content&quot;
 git push https://<span class="cp">${</span><span class="n">GH_TOKEN</span><span class="cp">}</span>@github.com/static-blog-sample/static-blog-sample.github.io.git master
@@ -124,12 +127,10 @@ git push https://<span class="cp">${</span><span class="n">GH_TOKEN</span><span 
 
 <h1>Reference</h1>
 <ul>
-<li>GitHub Pages : http://pages.github.com/</li>
+<li>[GitHub Pages][http://pages.github.com]</li>
 <li><a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/">정적 웹사이트 생성기의 유혹</a></li>
-<li>wesleyhales.com : https://github.com/wesleyhales/wesleyhales.com</li>
-<li>https://github.com/talha131/onCrashReboot</li>
-<li>Disqus : http://disqus.com</li>
-<li>Pelican : http://blog.getpelican.com/</li>
+<li>[wesleyhales.com][https://github.com/wesleyhales/wesleyhales.com]</li>
+<li><a href="https://github.com/talha131/onCrashReboot">onCrashReboot</a></li>
 </ul>
     </div><!-- /.entry-content -->
     <div class="comments">

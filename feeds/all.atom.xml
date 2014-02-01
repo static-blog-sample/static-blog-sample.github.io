@@ -35,6 +35,7 @@ content repo와 output repo를 git submodule로 엮는다. static html generator
 &lt;span class="c"&gt;# output repo의 경우는 자기에 맞게 바꾼다&lt;/span&gt;
 
 git submodule add https://github.com/static-blog-sample/static-blog-sample.github.io.git output
+git submodule update
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -62,7 +63,7 @@ github profile -&amp;gt; &lt;a href="https://github.com/settings/applications"&g
 &lt;p&gt;token은 얻었는데 이것을 &lt;code&gt;.travis.yml&lt;/code&gt;에 그냥 노출시키는건 말이 안되잖아?
 그래서 [travis-ci는 token과 같이 중요한 정보를 암호화 시키는 방법][http://docs.travis-ci.com/user/encryption-keys/]을 제공한다.
 루비 gem이 필요한 관계로 이것이 굴러가는 환경을 구축한다.
-아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 &lt;code&gt;static-blog-sample/static-blog-sample.github.io&lt;/code&gt;이다.&lt;/p&gt;
+아래의 명령에서 repo-name은 자신한테 맞는것으로 바꾼다. 예를 들면 이 글의 경우는 &lt;code&gt;static-blog-sample/blog&lt;/code&gt;이다. output repo가 아니라 &lt;strong&gt;content repo&lt;/strong&gt;다!&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;gem&lt;/span&gt; &lt;span class="nb"&gt;install&lt;/span&gt; &lt;span class="nx"&gt;travis&lt;/span&gt;
 &lt;span class="nx"&gt;travis&lt;/span&gt; &lt;span class="nx"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;token&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="na"&gt;-r&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;repo&lt;/span&gt;&lt;span class="na"&gt;-name&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -71,13 +72,15 @@ github profile -&amp;gt; &lt;a href="https://github.com/settings/applications"&g
 &lt;p&gt;출력으로 &lt;code&gt;secure: ".... encrypted data ...."&lt;/code&gt; 와 같은게 나온다. 이를 &lt;code&gt;.travis.yml&lt;/code&gt;에 집어넣는다.&lt;/p&gt;
 &lt;h3&gt;빌드 스크립트 작성&lt;/h3&gt;
 &lt;p&gt;travis-ci가 블로그를 받아서 수행할 작업을 작성한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# 정적 html 생성은 자신이 사용하는 환경에 맞춰서 바꾼다.
-make publish
-git config --global user.email &amp;quot;your-mail@gmail.com&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;git config --global user.email &amp;quot;your-mail@gmail.com&amp;quot;
 git config --global user.name &amp;quot;Travis&amp;quot;
+cp CNAME output
 cd output
-git pull origin master
 git checkout master
+git pull
+cd ..
+make publish
+cd output
 git add -f .
 git commit -a -m &amp;quot;add new site content&amp;quot;
 git push https://&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;GH_TOKEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;@github.com/static-blog-sample/static-blog-sample.github.io.git master
@@ -86,10 +89,8 @@ git push https://&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;GH_
 
 &lt;h1&gt;Reference&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;GitHub Pages : http://pages.github.com/&lt;/li&gt;
+&lt;li&gt;[GitHub Pages][http://pages.github.com]&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/"&gt;정적 웹사이트 생성기의 유혹&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;wesleyhales.com : https://github.com/wesleyhales/wesleyhales.com&lt;/li&gt;
-&lt;li&gt;https://github.com/talha131/onCrashReboot&lt;/li&gt;
-&lt;li&gt;Disqus : http://disqus.com&lt;/li&gt;
-&lt;li&gt;Pelican : http://blog.getpelican.com/&lt;/li&gt;
+&lt;li&gt;[wesleyhales.com][https://github.com/wesleyhales/wesleyhales.com]&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/talha131/onCrashReboot"&gt;onCrashReboot&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="blog"></category><category term="static site generator"></category></entry></feed>
