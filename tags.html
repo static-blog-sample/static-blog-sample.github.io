@@ -1,75 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-        <meta charset="utf-8" />
-        <title>Static Blog Sample - Tags</title>
-        <link rel="stylesheet" href="http://static-blog-sample.libsora.so/theme/css/main.css" />
-        <link href="http://static-blog-sample.libsora.so/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Static Blog Sample Atom Feed" />
+<head>  
+<title>All Tags · DEMO
+</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+<meta name="author" content="if1live" />
+<meta name="copyright" content="if1live" />
+
+<meta name="description" content="All tags used in the DEMO blog.
+" />
+
+
+
+
+<link rel="shortcut icon" href="http://static-blog-sample.libsora.so/theme/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-144x144.png" />
+<link rel="icon" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-144x144.png" />
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://static-blog-sample.libsora.so/theme/css/pure-min.css">
+<link rel="stylesheet" href="http://static-blog-sample.libsora.so/theme/css/style.css?c49c68ab">
+<link rel="stylesheet" type="text/css" href="http://static-blog-sample.libsora.so/theme/css/code.css">
+
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-37862172-2']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://static-blog-sample.libsora.so/">Static Blog Sample </a></h1>
-                <nav><ul>
-                    <li><a href="http://static-blog-sample.libsora.so/category/etc.html">etc</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+	<header class="header">
+		<nav class="pure-menu pure-menu-open">
+			<a href="http://static-blog-sample.libsora.so" class="pure-menu-heading">DEMO</a>
+			<ul class="nav-list">
+				
+				<li >
+					<a href="http://static-blog-sample.libsora.so/categories.html">Categories</a>
+				</li>
+				<li  class="pure-menu-selected" >
+					<a href="http://static-blog-sample.libsora.so/tags.html">Tags</a>
+				</li>
+				<li >
+					<a href="http://static-blog-sample.libsora.so/archives.html">Archives</a>
+				</li>
+				
+					<li>
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="https://twitter.com/if1live"><i class="fa fa-twitter"></i> Twitter</a>
+					</li>
 
-<section id="content" class="body">
-    <h1>Tags for Static Blog Sample</h1>        <li><a href="http://static-blog-sample.libsora.so/tag/blog.html">blog</a> (1)</li>
-        <li><a href="http://static-blog-sample.libsora.so/tag/static-site-generator.html">static site generator</a> (1)</li>
-</section>
+					<li>
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="http://getpelican.com/">Pelican</a>
+					</li>
+					<li>
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="http://libsora.so/">libsora.so</a>
+					</li>
 
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://libsora.so/">libsora.so</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://static-blog-sample.libsora.so/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+			</ul>
+			<ul class="nav-list">
+				<li>
+					<form class="pure-form" action="http://static-blog-sample.libsora.so/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+						<input type="text" placeholder="Search" name="q" id="tipue_search_input" required>
+					</form>
+				</li>
+			</ul>
+		</nav>
+	</header>
+</div>
 
-                            <li><a href="https://twitter.com/if1live">Twitter</a></li>
-                            <li><a href="https://github.com/static-blog-sample/">GitHub-Repo</a></li>
-                            <li><a href="https://github.com/if1live">GitHub-Writer</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+<div class="pure-u-1">
+	<div class="content">
+		<!-- A wrapper for all the blog posts -->
+		<div class="posts">
+			<h1 class="content-subhead">
+All Tags
+			</h1>
+<div>
+	<form class="pure-form">
+		<input type="text" class="filterinput" placeholder="Find a tag">
+	</form>
+	<ul class="list-of-tags">
+		<li>
+			<a href="/tags.html#blog-ref" class="pure-button">
+				blog<span>1</span>
+			</a>
+		</li>
+		<li>
+			<a href="/tags.html#markdown-ref" class="pure-button">
+				markdown<span>1</span>
+			</a>
+		</li>
+		<li>
+			<a href="/tags.html#rst-ref" class="pure-button">
+				rst<span>1</span>
+			</a>
+		</li>
+		<li>
+			<a href="/tags.html#static-site-generator-ref" class="pure-button">
+				static site generator<span>1</span>
+			</a>
+		</li>
+	</ul>
+</div>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<div>
+	<h2 id="blog-ref" class="tag-title">blog</h2>
+		<ul class="articles-in-tag">
+ 
+			<li>
+				<a href="http://static-blog-sample.libsora.so/posts/static-blog-sample/">GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기 
+				</a>
+			</li>
+		</ul>
+	<h2 id="markdown-ref" class="tag-title">markdown</h2>
+		<ul class="articles-in-tag">
+ 
+			<li>
+				<a href="http://static-blog-sample.libsora.so/posts/markdown-test/">Markdown Test Page 
+					<br/><small class="subtitle"> Simple Markdown Test </small>
+				</a>
+			</li>
+		</ul>
+	<h2 id="rst-ref" class="tag-title">rst</h2>
+		<ul class="articles-in-tag">
+ 
+			<li>
+				<a href="http://static-blog-sample.libsora.so/posts/restructuredtext-test/">reStructuredText Test Page 
+					<br/><small class="subtitle"> Simple reStructuredText Test </small>
+				</a>
+			</li>
+		</ul>
+	<h2 id="static-site-generator-ref" class="tag-title">static site generator</h2>
+		<ul class="articles-in-tag">
+ 
+			<li>
+				<a href="http://static-blog-sample.libsora.so/posts/static-blog-sample/">GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기 
+				</a>
+			</li>
+		</ul>
+</div>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+			
+		</div>
 
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-37862172-2']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+<footer class="footer">
+  <p>
+
+  </p>
+
+  <p>
+    Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>
+    / <a href="http://purecss.io/" title="Pure Home Page">Pure</a>
+    / <a href="http://www.dnsever.com" target="dnsever"><img src="https://kr.dnsever.com/image/dnsever-banner_80x16.gif" border="0" alt="DNS Powered by DNSEver.com"></a>
+  </p>
+
+  <p>
+    Theme is <a href="http://github.com/if1live/pelican-sora" title="Theme pelican-sora Home Page">pelican-sora</a> by <a href="http://libsora.so" title="libsora.so Home Page">libsora.so</a>.
+
+    Base theme is <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a>.
+  </p>
+</footer>	</div>
+</div>
+</div>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript">
-    var disqus_shortname = 'libsora';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+function validateForm(query) {
+	return (query.length > 0);
+}
 </script>
+
+
+<script type="text/javascript">
+(function ($) {
+	// custom css expression for a case-insensitive contains()
+	jQuery.expr[':'].Contains = function(a,i,m){
+    return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	};
+
+	function listFilter() {
+
+    $('.filterinput')
+    .change( function () {
+      var filter = $(this).val();
+      if(filter) {
+        // this finds all links in a list that contain the input,
+        // and hide the ones not containing the input while showing the ones that do
+        $('.list-of-tags').find("a:not(:Contains(" + filter + "))").parent().hide();
+        $('.list-of-tags').find("a:Contains(" + filter + ")").parent().show();
+        } else {
+        $('.list-of-tags').find("li").show();
+      }
+      return false;
+    })
+    .keyup( function () {
+      // fire the above change event after every letter
+      $(this).change();
+    });
+	}
+
+	//ondomready
+	$(function () {
+    listFilter($());
+	});
+}(jQuery));
+
+</script>
+
 </body>
 </html>

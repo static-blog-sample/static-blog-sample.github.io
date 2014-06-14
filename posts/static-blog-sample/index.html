@@ -1,43 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-        <meta charset="utf-8" />
-        <title>GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기</title>
-        <link rel="stylesheet" href="http://static-blog-sample.libsora.so/theme/css/main.css" />
-        <link href="http://static-blog-sample.libsora.so/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Static Blog Sample Atom Feed" />
+<head>  
+<title>GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기  · DEMO
+</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+<meta name="author" content="if1live" />
+<meta name="copyright" content="if1live" />
+
+<meta name="description" content="GitHub Pages + travis-ci + etc..
+" />
+
+
+<meta name="keywords" content="blog, static site generator, etc, " />
+
+
+
+
+<link rel="shortcut icon" href="http://static-blog-sample.libsora.so/theme/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-144x144.png" />
+<link rel="icon" href="http://static-blog-sample.libsora.so/theme/images/apple-touch-icon-144x144.png" />
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://static-blog-sample.libsora.so/theme/css/pure-min.css">
+<link rel="stylesheet" href="http://static-blog-sample.libsora.so/theme/css/style.css?c49c68ab">
+<link rel="stylesheet" type="text/css" href="http://static-blog-sample.libsora.so/theme/css/code.css">
+
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-37862172-2']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://static-blog-sample.libsora.so/">Static Blog Sample </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="http://static-blog-sample.libsora.so/category/etc.html">etc</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="http://static-blog-sample.libsora.so/posts/static-blog-sample/" rel="bookmark"
-           title="Permalink to GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기">GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기</a></h1>
-    </header>
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+	<header class="header">
+		<nav class="pure-menu pure-menu-open">
+			<a href="http://static-blog-sample.libsora.so" class="pure-menu-heading">DEMO</a>
+			<ul class="nav-list">
+				
+				<li >
+					<a href="http://static-blog-sample.libsora.so/categories.html">Categories</a>
+				</li>
+				<li >
+					<a href="http://static-blog-sample.libsora.so/tags.html">Tags</a>
+				</li>
+				<li >
+					<a href="http://static-blog-sample.libsora.so/archives.html">Archives</a>
+				</li>
+				
+					<li>
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="https://twitter.com/if1live"><i class="fa fa-twitter"></i> Twitter</a>
+					</li>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-02-01T00:00:00">
-                2014/02/01
-        </abbr>
+					<li>
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="http://getpelican.com/">Pelican</a>
+					</li>
+					<li>
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="http://libsora.so/">libsora.so</a>
+					</li>
 
-        <address class="vcard author">
-                By <a class="url fn" href="http://static-blog-sample.libsora.so/author/if1live.html">if1live</a>
-        </address>
-<p>In <a href="http://static-blog-sample.libsora.so/category/etc.html">etc</a>. </p>
-<p>tags: <a href="http://static-blog-sample.libsora.so/tag/blog.html">blog</a><a href="http://static-blog-sample.libsora.so/tag/static-site-generator.html">static site generator</a></p>
-</footer><!-- /.post-info -->      <p>내가 GitHub Pages를 사용한지 대략 1년정도 지났다.
+			</ul>
+			<ul class="nav-list">
+				<li>
+					<form class="pure-form" action="http://static-blog-sample.libsora.so/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+						<input type="text" placeholder="Search" name="q" id="tipue_search_input" required>
+					</form>
+				</li>
+			</ul>
+		</nav>
+	</header>
+</div>
+
+<div class="pure-u-1">
+	<div class="content">
+		<!-- A wrapper for all the blog posts -->
+		<div class="posts">
+			<h1 class="content-subhead">
+<a href="http://static-blog-sample.libsora.so/posts/static-blog-sample/" rel="bookmark" class="article-title"
+	title="Permalink to GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기">GitHub Pages와 travis-ci를 이용한 정적 블로그 구축하기
+</a>
+			</h1>
+<!-- A single blog post -->
+<section class="post">
+	<header class="post-header">
+		<h2 class="post-title">
+
+		</h2>
+	</header>
+	<div class="post-description">
+		<p>내가 GitHub Pages를 사용한지 대략 1년정도 지났다.
 그동안 어떻게 설정하면 관리하기 편하지 실험도 몇번 해봤고
 테마도 하나 만들어서 사용해봤고
 travis-ci와 연동해서 완전 자동화도 끝냈다.
@@ -49,7 +117,7 @@ travis-ci와 연동해서 완전 자동화도 끝냈다.
 <li>블로그의 완전 자동화를 목표로 하는 사람</li>
 </ul>
 <p>주의 : 정적블로그의 장점은 이 글에서는 다루지 않는다. <a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/">정적 웹사이트 생성기의 유혹</a>을 참고</p>
-<h2>Double Repository</h2>
+<h2 id="double-repository">Double Repository</h2>
 <p>GitHub Pages는 2가지 상황에서 동작이 다르다. 하나는 계정(혹은 회사)에 딸린 pages이다. username.github.io 프로젝트의 master 브렌치를 사용한다. 다른 하나는 프로젝트에 딸린 pages이다. gh-pages 저장소를 새로 만들어서 사용한다. 글의 목표가 개인 블로그를 만드는것이니까 프로젝트에 딸린 pages에 대해서는 취급하지 않는다.</p>
 <p>개인용 github pages의 경우 username.github.io 에 있는 내용을 그대로 웹에 보여준다. 블로그 내용을 내용을 username.github.io 에 집어넣고 자동생성된 html도 username.github.io 에 존재하면 저장소가 깨끗하지 않다. 데이터도 섞이게 되고 커밋로그도 섞여있다.</p>
 <p>그래서 저장소를 2개로 분리하는게 좋다.</p>
@@ -57,7 +125,7 @@ travis-ci와 연동해서 완전 자동화도 끝냈다.
 <li>실제 블로그 내용이 있는 저장소. 앞으로 <strong><a href="https://github.com/static-blog-sample/blog">content repo</a></strong> 라고 부른다.</li>
 <li>생성된 html만 들어있는 username.github.io. 앞으로 <strong><a href="https://github.com/static-blog-sample/static-blog-sample.github.io">output repo</a></strong>라고 부른다</li>
 </ul>
-<h2>content repo ↔ output repo ⇒ git submodule</h2>
+<h2 id="content-repo-output-repo-git-submodule">content repo ↔ output repo ⇒ git submodule</h2>
 <p><a href="https://github.com/talha131/onCrashReboot">@talha131</a>에게 배운 편법이다.
 content repo와 output repo를 git submodule로 엮는다. static html generator로 html을 생성하면 output repo로 데이터가 적절히 들어간다. 이것을 서버로 푸시하면 블로그에 새 글이 올라간다.</p>
 <div class="highlight"><pre><span class="c"># content repo 에 위치한 상태</span>
@@ -68,13 +136,13 @@ git submodule update
 </pre></div>
 
 
-<h2>정적 사이트 생성기 붙이기</h2>
+<h2 id="_1">정적 사이트 생성기 붙이기</h2>
 <p>자신이 사용할 정적 사이트 생성기에 맞춰서 적절히 내부를 구성한다.
 다른건 어떻게 설정하든 내가 알바 아니지만 생성 결과물이 <strong>output</strong>에 들어가도록 한다.
 pelican을 이용한 설정 예제는 해당 블로그를 참고하면 된다.</p>
-<h2>CNAME</h2>
+<h2 id="cname">CNAME</h2>
 <p>블로그에 custom domain을 설정하고 싶으면 <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">Setting up a custom domain with Pages</a>을 설정하면 된다. 내용을 참고해서 CNAME 파일을 만들고 DNS설정을 해주면 도메인이 연결된다.</p>
-<h2>travis-ci</h2>
+<h2 id="travis-ci">travis-ci</h2>
 <p>새로운 글이 푸시되었을때 travis-ci가 하고싶은 작업은 다음과 같다.</p>
 <ol>
 <li>static html generator를 돌려서 html을 생성한다. html은 output에 들어간다</li>
@@ -82,10 +150,10 @@ pelican을 이용한 설정 예제는 해당 블로그를 참고하면 된다.</
 <li>참 쉽죠?</li>
 </ol>
 <p>이를 하기 위해서는 몇가지 과정을 거쳐야한다.</p>
-<h3>static html generator가 돌아갈 수 있는 환경 만들기.</h3>
+<h3 id="static-html-generator">static html generator가 돌아갈 수 있는 환경 만들기.</h3>
 <p>jekyll을 쓰건 pelican을 쓰건 이런 static html generator은 travis-ci에 당연히 설치되어있지 않다.
 .travis.yml에 해당 패키지를 설치하는 스크립트를 잊지말고 작성한다.</p>
-<h3>GitHub Token</h3>
+<h3 id="github-token">GitHub Token</h3>
 <p>travis-ci에서 다른 저장소로 푸시를 하기 위해서는 token이 필요하다.
 github profile -&gt; <a href="https://github.com/settings/applications">Applications</a>
 으로 들어간다.
@@ -101,10 +169,10 @@ github profile -&gt; <a href="https://github.com/settings/applications">Applicat
 
 
 <p>출력으로 <code>secure: ".... encrypted data ...."</code> 와 같은게 나온다. 이를 <code>.travis.yml</code>에 집어넣는다.</p>
-<h3>빌드 스크립트 작성</h3>
+<h3 id="_2">빌드 스크립트 작성</h3>
 <p>travis-ci가 블로그를 받아서 수행할 작업을 작성한다.
 이 블로그에 사용한 <a href="https://github.com/static-blog-sample/blog/blob/master/.travis.yml">.travis.yml</a>을 참고한다. 세부 내용은 자신의 환경에 맞춰서 바꾸면된다.</p>
-<h2>정리</h2>
+<h2 id="_3">정리</h2>
 <p>여기까지 완료했으면 블로그에 새로운 글을 쓰고 푸시해보자. travis-ci가 html을 생성하고 GitHub Pages로 푸시를 한다. 그리고 빌드가 성공적으로 끝났으면 빌드 성공했다고 스팸메일이 날라온다. 몇분정도 지나면 새로운 내용이 적용된다.</p>
 <p>이 블로그와 관련된 추가 정보는 다음의 링크에서 확인가능하다</p>
 <ul>
@@ -112,80 +180,118 @@ github profile -&gt; <a href="https://github.com/settings/applications">Applicat
 <li><a href="https://github.com/static-blog-sample/static-blog-sample.github.io">output repo</a> : github pages로 연결되어있다.</li>
 <li><a href="https://travis-ci.org/static-blog-sample/blog"><img alt="Build Status" src="https://travis-ci.org/static-blog-sample/blog.png?branch=master" /></a> travis-ci</li>
 </ul>
-<h1>Reference</h1>
+<h1 id="reference">Reference</h1>
 <ul>
 <li><a href="http://pages.github.com">GitHub Pages</a></li>
 <li><a href="http://blog.nacyot.com/articles/2014-01-15-static-site-generator/">정적 웹사이트 생성기의 유혹</a></li>
 <li><a href="https://github.com/wesleyhales/wesleyhales.com">wesleyhales.com</a></li>
 <li><a href="https://github.com/talha131/onCrashReboot">onCrashReboot</a></li>
 </ul>
-<h1>Document History</h1>
+<h1 id="document-history">Document History</h1>
 <ul>
 <li>2014/02/02 : <a href="http://blog.nacyot.com">nacyot</a>님의 지적으로 .travis.yml 스크립트 수정</li>
 </ul>
-    </div><!-- /.entry-content -->
-    <div class="comments">
-      <h2>Comments !</h2>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        var disqus_identifier = "posts/static-blog-sample/";
-        var disqus_url = "http://static-blog-sample.libsora.so/posts/static-blog-sample/";
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://libsora.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-    </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://libsora.so/">libsora.so</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://static-blog-sample.libsora.so/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="https://twitter.com/if1live">Twitter</a></li>
-                            <li><a href="https://github.com/static-blog-sample/">GitHub-Repo</a></li>
-                            <li><a href="https://github.com/if1live">GitHub-Writer</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-37862172-2']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+<section>
+<div class="accordion" id="accordion2">
+	<div class="accordion-group">
+		<div id="disqus_thread" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<div class="comments">
+<div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'libsora';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+var disqus_shortname = 'libsora';
+var disqus_identifier = 'http://static-blog-sample.libsora.so/posts/static-blog-sample/';
+var disqus_url = 'http://static-blog-sample.libsora.so/posts/static-blog-sample/';
+
+(function() {
+	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+		<aside>
+		<hr/>
+		<nav>
+		<ul class="articles-timeline">
+			<li class="previous-article">« <a href="http://static-blog-sample.libsora.so/posts/markdown-test/" title="Previous: Markdown Test Page - Simple Markdown Test">Markdown Test Page <br/><small>Simple Markdown Test</small></a></li>
+		</ul>
+		<div class="clearfix"></div>
+		</nav>
+		</aside>
+
+	</div>
+	<div class="article-metadata">
+		<h4>Published</h4>
+		<time pubdate="pubdate" datetime="2014-02-01T00:00:00">
+			Feb 1, 2014
+		</time>
+
+
+		<h4>Category</h4>
+		<a class="pure-button pure-button-primary pure-button-small" href="/categories.html#etc-ref">etc</a>
+
+		<h4>Tags</h4>
+		<ul class="list-of-tags tags-in-article">
+			<li>
+				<a href="/tags.html#blog-ref" class="pure-button">
+					blog
+					<span>1</span>
+				</a>
+			</li>
+			<li>
+				<a href="/tags.html#static-site-generator-ref" class="pure-button">
+					static site generator
+					<span>1</span>
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</section>
+			
+		</div>
+
+<footer class="footer">
+  <p>
+
+  </p>
+
+  <p>
+    Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>
+    / <a href="http://purecss.io/" title="Pure Home Page">Pure</a>
+    / <a href="http://www.dnsever.com" target="dnsever"><img src="https://kr.dnsever.com/image/dnsever-banner_80x16.gif" border="0" alt="DNS Powered by DNSEver.com"></a>
+  </p>
+
+  <p>
+    Theme is <a href="http://github.com/if1live/pelican-sora" title="Theme pelican-sora Home Page">pelican-sora</a> by <a href="http://libsora.so" title="libsora.so Home Page">libsora.so</a>.
+
+    Base theme is <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a>.
+  </p>
+</footer>	</div>
+</div>
+</div>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+function validateForm(query) {
+	return (query.length > 0);
+}
+</script>
+
+<script type="text/javascript">
+$(function() {
+	$('.post table').addClass('pure-table');
+})
+</script>
+
 </body>
 </html>
